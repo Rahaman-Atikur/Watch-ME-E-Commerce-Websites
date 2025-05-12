@@ -45,7 +45,9 @@ for (let quantityButton of quantityElements) {
 let cartCount = 0;
 document.getElementById("add-to-cart").addEventListener("click", function () {
   const checkoutContainer = document.getElementById("checkout-container");
-  const quantity = parseInt(document.getElementById("quantity").innerText);
-  cartCount = cartCount + quantity;
-  document.getElementById("cart-count").innerText = cartCount;
+  if (quantity > 0) {
+    const quantity = parseInt(document.getElementById("quantity").innerText);
+    cartCount = cartCount + quantity;
+    document.getElementById("cart-count").innerText = cartCount;
+  }
 });
