@@ -18,27 +18,34 @@ for (let i = 0; i < ringButtons.length; i++) {
 
 function selectWristSize(size) {
   const sizes = ["S", "L", "M", "XL"];
-  for(let i=0;i<sizes.length;i++){
-    let btn = document.getElementById('size-' + sizes[i]);
+  for (let i = 0; i < sizes.length; i++) {
+    let btn = document.getElementById("size-" + sizes[i]);
     let element = sizes[i];
-    if(size===element){
-      btn.classList.add('border-purple-600');
-    }
-    else{
-      btn.classList.remove('border-purple-600');
+    if (size === element) {
+      btn.classList.add("border-purple-600");
+    } else {
+      btn.classList.remove("border-purple-600");
     }
   }
- 
 }
 
-const quantityElements = document.querySelectorAll('.quantity-button');
-for(let quantityButton of quantityElements){
-  quantityButton.addEventListener('click',function(event){
-   const amount = event.target.innerText ==="+" ? 1 :-1;
-    const productQuantity = parseInt(document.getElementById("quantity").innerText) ;
-    const newQuantity = Math.max(0,(productQuantity + amount));
-    document.getElementById('quantity').innerText = newQuantity;
-  })
+const quantityElements = document.querySelectorAll(".quantity-button");
+for (let quantityButton of quantityElements) {
+  quantityButton.addEventListener("click", function (event) {
+    const amount = event.target.innerText === "+" ? 1 : -1;
+    const productQuantity = parseInt(
+      document.getElementById("quantity").innerText
+    );
+    const newQuantity = Math.max(0, productQuantity + amount);
+    document.getElementById("quantity").innerText = newQuantity;
+  });
 }
 
-
+// Add to cart
+let cartCount = 0;
+document.getElementById("add-to-cart").addEventListener("click", function () {
+  const checkoutContainer = document.getElementById("checkout-container");
+  const quantity = parseInt(document.getElementById("quantity").innerText);
+  cartCount = cartCount + quantity;
+  document.getElementById("cart-count").innerText = cartCount;
+});
