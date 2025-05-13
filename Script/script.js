@@ -43,11 +43,56 @@ for (let quantityButton of quantityElements) {
 
 // Add to cart
 let cartCount = 0;
+let cartItems = [];
 document.getElementById("add-to-cart").addEventListener("click", function () {
   const checkoutContainer = document.getElementById("checkout-container");
   const quantity = parseInt(document.getElementById("quantity").innerText);
   if (quantity > 0) {
     cartCount = cartCount + quantity;
     document.getElementById("cart-count").innerText = cartCount;
+
+    const selectedColorButton= document.querySelector("button.border-purple-600.w-6");
+    const selectedColor = selectedColorButton.id.split("-")[0];
+    const selectedSizeButtons = document.querySelector("button.border-purple-600:not(w-6)");
+    const selectedSize = selectedSizeButtons.innerText.split(" ")[0];
+    const selectedPrice = selectedSizeButtons.innerText.split(" ")[1].split("$")[1];
+     const productImage = document.getElementById("product-image");
+    cartItems.push({
+      image: selectedColor + ".png",
+      title : "Classy Modern Smartwatch",
+      color: selectedColor,
+      size : selectedSize,
+      price: quantity * parseInt(selectedPrice),
+
+    })
+
+
+
+  }
+  else{
+    alert("Please Select a quantity");
   }
 });
+
+document.getElementById('checkout-btn')
+.addEventListener('click',function(){
+  const cartModal = document.getElementById("cart-modal");
+  const cartItems = document.getElementById("cart-Items");
+  for(let i=0;i<cartItems.length;i++){
+     const row = document.createElement("tr");
+     row.classList.add("border-b");
+     row.innerHTML = `
+      <td>
+      <div class="flex items-center space-x-2">
+      <img src="${item-title}" alt="">
+      <span class="font-semi-bold">
+        ${item-title}
+      </span>
+      
+      </div>
+      </td>
+     `;
+     cartContainer.appendChild(row);
+  }
+  cartModal.classList.remove('hidden');
+})
