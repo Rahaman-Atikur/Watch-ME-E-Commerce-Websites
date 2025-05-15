@@ -10,13 +10,10 @@ for (let i = 0; i < ringButtons.length; i++) {
     }
     event.target.classList.add("border-purple-600");
     event.target.classList.remove("border-gray-300");
-
     const productImage = document.getElementById("product-image");
-
     productImage.src = "../images/" + color + ".png";
   });
 }
-
 function selectWristSize(size) {
   const sizes = ["S", "L", "M", "XL"];
   for (let i = 0; i < sizes.length; i++) {
@@ -40,7 +37,6 @@ for (let quantityButton of quantityElements) {
     document.getElementById("quantity").innerText = newQuantity;
   });
 }
-
 // Add to cart
 let cartCount = 0;
 let cartItems = [];
@@ -50,37 +46,31 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
   if (quantity > 0) {
     cartCount = cartCount + quantity;
     document.getElementById("cart-count").innerText = cartCount;
-
     // From this should look up
       const selectedColorButton= document.querySelector("button.border-purple-600.w-6");
        const selectedColor = selectedColorButton.id.split("-");
       const selectedSizeButtons = document.querySelector("button.border-purple-600:not(.w-6)");
        console.log(selectedSizeButtons);
       const selectedSize = selectedSizeButtons.innerText.split(" ")[0];
-      
-  //     const selectedPrice = selectedSizeButtons.innerText.split(" ")[1].split("$")[1];
-  //     const productImage = document.getElementById("product-image");
-  //     cartItems.push({
-  //       image: selectedColor + ".png",
-  //       title : "Classy Modern Smartwatch",
-  //       color: selectedColor,
-  //       size : selectedSize,
-  //       price: quantity * parseInt(selectedPrice),
-
-  //     })
-  //   }
-  //     else{
-  //       alert("Please Select a quantity");
+      const selectedPrice = selectedSizeButtons.innerText.split(" ")[1].split("$")[1];
+      const productImage = document.getElementById("product-image");
+      cartItems.push({
+        image: selectedColor + ".png",
+        title : "Classy Modern Smartwatch",
+        color: selectedColor,
+        size : selectedSize,
+        price: quantity * parseInt(selectedPrice),
+      })
+    }
+      else{
+        alert("Please Select a quantity");
    }
 });
 document.getElementById("checkout-btn").addEventListener("click", function () {
-  console.log("Btn clicked");
   const cartModal = document.getElementById("cart-modal");
   const cartItems = document.getElementById("cart-items");
-
   for (let i = 0; i < cartItems.length; i++) {
     const row = document.createElement("tr");
-
     row.classList.add("border-b");
     row.innerHTML = `
     <td>
