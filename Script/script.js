@@ -44,23 +44,21 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
   const checkoutContainer = document.getElementById("checkout-container");
   const quantity = parseInt(document.getElementById("quantity").innerText);
   if (quantity > 0) {
+     document.getElementById("checkout-container").classList.remove("hidden");
     cartCount = cartCount + quantity;
     document.getElementById("cart-count").innerText = cartCount;
-    // From this should look up
       const selectedColorButton= document.querySelector("button.border-purple-600.w-6");
-       const selectedColor = selectedColorButton.id.split("-");
+       const selectedColor = selectedColorButton.id.split("-")[0];
       const selectedSizeButtons = document.querySelector("button.border-purple-600:not(.w-6)");
-       console.log(selectedSizeButtons);
       const selectedSize = selectedSizeButtons.innerText.split(" ")[0];
       const selectedPrice = selectedSizeButtons.innerText.split(" ")[1].split("$")[1];
-      const productImage = document.getElementById("product-image");
       cartItems.push({
         image: selectedColor + ".png",
         title : "Classy Modern Smartwatch",
         color: selectedColor,
         size : selectedSize,
         price: quantity * parseInt(selectedPrice),
-      })
+      });
     }
       else{
         alert("Please Select a quantity");
@@ -68,8 +66,9 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
 });
 document.getElementById("checkout-btn").addEventListener("click", function () {
   const cartModal = document.getElementById("cart-modal");
-  const cartItems = document.getElementById("cart-items");
+  const cartContainer = document.getElementById("cart-items");
   for (let i = 0; i < cartItems.length; i++) {
+    const item = cartItems[i];
     const row = document.createElement("tr");
     row.classList.add("border-b");
     row.innerHTML = `
@@ -83,4 +82,8 @@ document.getElementById("checkout-btn").addEventListener("click", function () {
     cartContainer.appendChild(row);
   }
   cartModal.classList.remove("hidden");
+});
+document.getElementById("continue-shopping")
+.addEventListener("click",function(){
+  document.getElementById("cart-modal").classList.add("hidden");
 });
