@@ -1,3 +1,4 @@
+
 const ringButtons = document.querySelectorAll(".ring-button");
 for (let i = 0; i < ringButtons.length; i++) {
   const ringButton = ringButtons[i];
@@ -52,23 +53,25 @@ document.getElementById("add-to-cart").addEventListener("click", function () {
 
     // From this should look up
       const selectedColorButton= document.querySelector("button.border-purple-600.w-6");
-      const selectedColor = selectedColorButton.id.split("-")[0];
-      const selectedSizeButtons = document.querySelector("button.border-purple-600:not(w-6)");
+       const selectedColor = selectedColorButton.id.split("-");
+      const selectedSizeButtons = document.querySelector("button.border-purple-600:not(.w-6)");
+       console.log(selectedSizeButtons);
       const selectedSize = selectedSizeButtons.innerText.split(" ")[0];
-      const selectedPrice = selectedSizeButtons.innerText.split(" ")[1].split("$")[1];
-      const productImage = document.getElementById("product-image");
-      cartItems.push({
-        image: selectedColor + ".png",
-        title : "Classy Modern Smartwatch",
-        color: selectedColor,
-        size : selectedSize,
-        price: quantity * parseInt(selectedPrice),
+      
+  //     const selectedPrice = selectedSizeButtons.innerText.split(" ")[1].split("$")[1];
+  //     const productImage = document.getElementById("product-image");
+  //     cartItems.push({
+  //       image: selectedColor + ".png",
+  //       title : "Classy Modern Smartwatch",
+  //       color: selectedColor,
+  //       size : selectedSize,
+  //       price: quantity * parseInt(selectedPrice),
 
-      })
-    }
-      else{
-        alert("Please Select a quantity");
-  }
+  //     })
+  //   }
+  //     else{
+  //       alert("Please Select a quantity");
+   }
 });
 document.getElementById("checkout-btn").addEventListener("click", function () {
   console.log("Btn clicked");
